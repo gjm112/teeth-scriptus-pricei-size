@@ -9,7 +9,8 @@ minE = 1000;
 for ctr = 0:floor(T/scl)
     q2n = ShiftF(q2,scl*ctr);
     [q2n,R] = Find_Best_Rotation(q1,q2n);
-    Ec = acos(InnerProd_Q(q1,q2n));    
+    %Ec = acos(InnerProd_Q(q1,q2n));    
+    Ec = sqrt(InnerProd_Q(q1-q2n,q1-q2n));
     if Ec < minE
         q2best  = q2n;
         Rbest = R;

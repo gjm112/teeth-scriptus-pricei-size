@@ -9,7 +9,7 @@ function [q2best,Rbest] = Find_Rotation_and_Seed_unique(q1,q2,reparamFlag)
 
 %this shifts by one to hit every point on the second curve 
 %could change to 2 if things are taking too long to run 
-scl = 2;
+scl = 1;
 minE = 1000;
 for ctr = 0:floor((T)/scl)
     q2n = ShiftF(q2,scl*ctr);
