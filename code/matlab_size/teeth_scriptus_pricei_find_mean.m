@@ -1,4 +1,4 @@
-%cd /Users/nastaranghorbani/Documents/size/code/matlab
+wd = "/Users/gregorymatthews/Dropbox"
 cd /Users/nastaranghorbani/Documents/size/code/matlab_size
 toothtype = {"LM1","LM2","LM3","UM1","UM2","UM3"}
 species = {"pricei", "scriptus"}

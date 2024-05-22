@@ -1,4 +1,5 @@
-load("/Users/nastaranghorbani/Documents/teeth-scriptus-pricei2/data/teethdata_scriptus_pricei.RData")
+set.seed(20240521)
+load("/Users/gregorymatthews/Dropbox/teeth-scriptus-pricei/data/teethdata_scriptus_pricei.RData")
 pvals <- list()
 for (toothtype in c("LM1","LM2","LM3","UM1","UM2","UM3")){print(toothtype)
 
@@ -11,7 +12,7 @@ class <- c(rep("scriptus",n_scriptus),rep("pricei",n_pricei))
 #Run this script first in matlab: pairwise_dist_scriptus_pricei.m
 #Pariwise distances
 #First rows are scriptus and last rows are pricei
-ddd <- read.csv(paste0("/Users/nastaranghorbani/Documents/teeth-scriptus-pricei2/data/matlab/pairwise_distances_",toothtype,".csv"), header = FALSE)
+ddd <- read.csv(paste0("./data/matlab/pairwise_distances_",toothtype,".csv"), header = FALSE)
 ddd <- as.matrix(ddd)
 
 #Distrance based permutation testing.  
@@ -22,7 +23,7 @@ ddd <- as.matrix(ddd)
 
 Dbar11 <- sum(ddd[class == "scriptus",class == "scriptus"])/(n_scriptus^2)
 Dbar22 <- sum(ddd[class == "pricei",class == "pricei"])/(n_pricei^2)
-Dbar12 <- sum(ddd[class == "pricei",class == "scriptus"])/(n_pricei*n_pricei)
+Dbar12 <- sum(ddd[class == "pricei",class == "scriptus"])/(n_pricei*n_scriptus)
 
 S <- ((n_scriptus*n_pricei)/((n_scriptus+n_pricei)))*(2*Dbar12 - (Dbar11 + Dbar22))
 
@@ -33,17 +34,19 @@ for (i in 1:nsim){print(i)
 class_perm <- sample(class,length(class),replace = FALSE)
 Dbar11 <- sum(ddd[class_perm == "scriptus",class_perm == "scriptus"])/(n_scriptus^2)
 Dbar22 <- sum(ddd[class_perm == "pricei",class_perm == "pricei"])/(n_pricei^2)
-Dbar12 <- sum(ddd[class_perm == "pricei",class_perm == "scriptus"])/(n_pricei*n_pricei)
+Dbar12 <- sum(ddd[class_perm == "pricei",class_perm == "scriptus"])/(n_pricei*n_scriptus)
 
 Sperm[i] <- ((n_scriptus*n_pricei)/((n_scriptus+n_pricei)))*(2*Dbar12 - (Dbar11 + Dbar22))
 }
 
 pvals[[toothtype]] <- mean(Sperm >= S)
 
+hist(Sperm, main = toothtype, xlim = c(0, S + 5))
+abline(v = S, col = "red")
+
 }
 
 
-hist(Sperm)
-abline(v = S, col = "red")
+
 
 
