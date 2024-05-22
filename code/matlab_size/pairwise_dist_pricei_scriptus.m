@@ -1,10 +1,11 @@
-cd /Users/nastaranghorbani/Documents/size/code/matlab_size
+wd = "/Users/gregorymatthews/Dropbox"
+cd /Users/gregorymatthews/Dropbox/teeth-scriptus-pricei-size/code/matlab_size
 toothtype = {"LM1","LM2","LM3","UM1","UM2","UM3"}
 species = {"pricei", "scriptus"}
 for t=1:6
 
-        data_scriptus = readtable("/Users/nastaranghorbani/Documents/size/data/matlab/data_"+toothtype(t)+"_scriptus.csv")
-        data_pricei = readtable("/Users/nastaranghorbani/Documents/size/data/matlab/data_"+toothtype(t)+"_pricei.csv")
+        data_scriptus = readtable(wd + "/teeth-scriptus-pricei-size/data/matlab/data_"+toothtype(t)+"_scriptus.csv")
+        data_pricei = readtable(wd + "/teeth-scriptus-pricei-size/data/matlab/data_"+toothtype(t)+"_pricei.csv")
 data=[data_scriptus; data_pricei]
         
         %get the number of rows and cols
@@ -28,14 +29,13 @@ data=[data_scriptus; data_pricei]
             teeth_data(:,:,j) = ReSampleCurve(X,100);
         end
         
-        cd /Users/nastaranghorbani/Documents/size/code/matlab_size
+        cd /Users/gregorymatthews/Dropbox/teeth-scriptus-pricei-size/code/matlab_size
 
          ddd = FindPairwiseDistance(teeth_data)
 
       %Now save the average tooth
-        save("/Users/nastaranghorbani/Documents/size/data/matlab/pairwise_distances_"+toothtype(t)+".mat","ddd")
-        
-        csvwrite("/Users/nastaranghorbani/Documents/size/data/matlab/pairwise_distances_"+toothtype(t)+".csv",ddd)
+        save(wd + "/teeth-scriptus-pricei-size/data/matlab/pairwise_distances_"+toothtype(t)+".mat","ddd")
+        csvwrite(wd + "/teeth-scriptus-pricei-size/data/matlab/pairwise_distances_"+toothtype(t)+".csv",ddd)
 
 end  
         

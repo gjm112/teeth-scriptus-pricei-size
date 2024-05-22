@@ -1,8 +1,9 @@
 
 # run teeth_scriptus_pricei_find-mean_combined.m in matlab
 
-
-load("/Users/nastaranghorbani/Documents/teeth-scriptus-pricei2/data/teethdata_scriptus_pricei.RData")
+#This is the same data for shape and size and shape
+#I'm only using this to get countshere
+load("/Users/gregorymatthews/Dropbox/teeth-scriptus-pricei/data/teethdata_scriptus_pricei.RData")
 #Scriptus is the first n rows, pricei is the last some rows. 
 length(data[["LM1"]][["scriptus"]])
 length(data[["LM1"]][["pricei"]])
@@ -13,7 +14,7 @@ for (i in c("LM1", "LM2", "LM3", "UM1", "UM2", "UM3")){
   
 
 
-PC_combined <- read.csv(paste0("/Users/nastaranghorbani/Documents/teeth-scriptus-pricei2/data/matlab/PC_feat_",i,"_combined.csv"), header = FALSE)
+PC_combined <- read.csv(paste0("./data/matlab/PC_feat_",i,"_combined.csv"), header = FALSE)
 
 library(Hotelling)
 PC_combined$g <- c(rep(1,length(data[[i]][["scriptus"]])),
