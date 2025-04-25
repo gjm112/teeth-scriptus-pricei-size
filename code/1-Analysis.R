@@ -20,6 +20,7 @@ library(Hotelling)
 PC_combined$g <- c(rep(1,length(data[[i]][["scriptus"]])),
                            rep(2,length(data[[i]][["pricei"]])))
 
+
 results <-  hotelling.test(.~g, data = PC_combined)
 results$stats$statistic
 #results <-  hotelling.stat(PC_LM1_combined[PC_LM1_combined$g ==1,-11],PC_LM1_combined[PC_LM1_combined$g ==2,-11])
@@ -38,7 +39,7 @@ null[j] <-  hotelling.test(.~g, data = temp)$stat$statistic
 pvals_hotelling[[i]] <- mean(null >= results$stats$statistic)
 }
 
-
+unlist(pvals_hotelling)
 
 
 

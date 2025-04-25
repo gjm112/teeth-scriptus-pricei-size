@@ -33,7 +33,7 @@ data=[data_scriptus; data_pricei]
         end
         
         %Compute mean
-        [out_q,q,E] = FindElasticMeanFast(teeth_data)
+        [out_q,q,E] = FindElasticMean(teeth_data)
         out_beta = q_to_curve(out_q)
         [VV,PC_feat]=FindTangentFeatures(out_q,q,10)
 
