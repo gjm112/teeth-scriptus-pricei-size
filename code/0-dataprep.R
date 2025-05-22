@@ -54,8 +54,8 @@ data[["UM2"]][["pricei"]][["M21B"]] <- data[["UM2"]][["pricei"]][["M21B"]][nrow(
 #Save the list
 save(data, file = "/data/teethdata_scriptus_pricei.RData")
 
-#Load the same date for shape only.  
-load("/Users/gregorymatthews/Dropbox/teeth-scriptus-pricei//data/teethdata_scriptus_pricei.RData")
+#Load the same data for shape only.  
+load("/Users/gregorymatthews/Dropbox/teeth-scriptus-pricei/data/teethdata_scriptus_pricei.RData")
 
 
 
